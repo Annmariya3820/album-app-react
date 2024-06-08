@@ -3,9 +3,9 @@ import Navbar from './Navbar'
 import axios from 'axios'
 
 const View = () => {
-    const [data,changedata] =useState([])
+    const [data,changedata] =useState({"articles":[]})
     const FetchData=()=>{
-      axios.get("https://jsonplaceholder.typicode.com/albums").then(
+      axios.get("https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=9b6ac262eea44bcbbf80ae1b064f631d").then(
         (responce)=>{
           console.log(responce.data)
           changedata(responce.data)
@@ -29,13 +29,13 @@ const View = () => {
     </tr>
   </thead>
   <tbody>
-    {data.map(
+    {data.articles.map(
       (value, index) => {
      return <tr>
 
-      <td>{value.userId}</td>
-      <td>{value.id}</td>
       <td>{value.title}</td>
+      <td>{value.publishedAt}</td>
+      <td>{value.description}</td>
       
     </tr>
       }
